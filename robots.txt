@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mertbatis.github.io/marka-bulteni/sitemap.xml
