@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marka Bülteni Sorgulama: markanıza benzer yeni başvuru var mı?</title>
+<meta name="description" content="Resmî Marka Bülteni'nde markanıza benzer yeni başvuru olup olmadığını ücretsiz sorgulayın. 504 sayılı bülten (12.11.2026) dahil son 1 bülten, 6.697 başvuru.">
+<style>
+:root{--zemin:#f7f6f2;--kart:#fff;--yazi:#1c1b18;--soluk:#6b675e;--cizgi:#e2ded3;--vurgu:#0b5d4b;--vurgu-zemin:#e3f1ec;--uyari:#8a4b00;--uyari-zemin:#fbefd9}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--zemin:#151513;--kart:#1f1e1b;--yazi:#eceae3;--soluk:#a39f94;--cizgi:#34322d;--vurgu:#6fd1b8;--vurgu-zemin:#17322c;--uyari:#f0c27a;--uyari-zemin:#3a2c12}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--zemin);color:var(--yazi);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:28px 16px 64px}
+h1{font-size:clamp(1.5rem,4.5vw,2.1rem);line-height:1.2;margin:0 0 10px;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:36px 0 10px}
+p{margin:0 0 12px}
+.alt{color:var(--soluk)}
+.kart{background:var(--kart);border:1px solid var(--cizgi);border-radius:12px;padding:18px}
+label{display:block;font-weight:600;font-size:.92rem;margin:0 0 6px}
+input[type=text]{width:100%;padding:12px 14px;font:inherit;color:inherit;background:var(--zemin);border:1px solid var(--cizgi);border-radius:9px}
+input[type=text]:focus{outline:2px solid var(--vurgu);outline-offset:1px}
+.satir{display:grid;grid-template-columns:1.4fr 1fr auto;gap:12px;align-items:end}
+@media (max-width:640px){.satir{grid-template-columns:1fr}}
+button{padding:12px 20px;font:inherit;font-weight:600;color:#fff;background:var(--vurgu);border:0;border-radius:9px;cursor:pointer}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) button{color:#0c1a16}}
+.ipucu{font-size:.86rem;color:var(--soluk);margin-top:8px}
+#sonuc{margin-top:18px}
+.ozet{padding:12px 14px;border-radius:9px;margin-bottom:12px;font-weight:600}
+.ozet.var{background:var(--uyari-zemin);color:var(--uyari)}
+.ozet.yok{background:var(--vurgu-zemin);color:var(--vurgu)}
+.es{border-top:1px solid var(--cizgi);padding:12px 0;display:grid;grid-template-columns:1fr auto;gap:6px 14px}
+.es:first-of-type{border-top:0}
+.es b{font-size:1.05rem;word-break:break-word}
+.es .kim{color:var(--soluk);font-size:.9rem;grid-column:1/-1;word-break:break-word}
+.rozet{font-size:.78rem;padding:3px 8px;border-radius:99px;background:var(--uyari-zemin);color:var(--uyari);white-space:nowrap;align-self:start}
+.rozet.sinif{background:var(--vurgu-zemin);color:var(--vurgu)}
+.sure{font-size:.86rem;color:var(--soluk);grid-column:1/-1}
+ul{padding-left:20px;margin:0 0 12px}
+a{color:var(--vurgu)}
+.cta{margin-top:22px;border-color:var(--vurgu)}
+footer{margin-top:48px;font-size:.84rem;color:var(--soluk);border-top:1px solid var(--cizgi);padding-top:16px}
+</style>
+</head>
+<body>
+<main>
+<h1>Markanıza benzer yeni bir başvuru var mı?</h1>
+<p class="alt">Resmî Marka Bülteni ayda iki kez çıkar ve yüzlerce megabaytlık bir PDF'tir. Benzer bir marka yayımlandıysa itiraz için yalnızca <b>iki ayınız</b> vardır. Aşağıya markanızı yazın; son 1 bültendeki 6.697 başvuruyu saniyede tarayalım.</p>
+
+<div class="kart">
+  <form id="f" class="satir" autocomplete="off">
+    <div><label for="ad">Marka adınız</label><input type="text" id="ad" placeholder="örnek: Atmosfer" required></div>
+    <div><label for="sn">Sınıflarınız (isteğe bağlı)</label><input type="text" id="sn" placeholder="örnek: 25, 35" inputmode="numeric"></div>
+    <button type="submit">Bültenlerde ara</button>
+  </form>
+  <div class="ipucu">Sınıf yazarsanız aynı sınıftaki başvurular öne alınır. Sınıfınızı bilmiyorsanız boş bırakın.</div>
+  <div id="sonuc" aria-live="polite"></div>
+</div>
+
+<div class="kart cta" id="cta" hidden>
+  <b>Her yeni bültende bu taramayı sizin yerinize yapalım.</b>
+  <p class="alt" style="margin:6px 0 12px">Bülten çıktığı gün markanıza benzer başvuru varsa e-postayla haber veririz. Şu an deneme aşamasında ve ücretsiz.</p>
+  <span class="alt">Kayıt formu yakında.</span>
+</div>
+
+<h2>Bu sayfa ne yapar?</h2>
+<ul>
+  <li>Türk Patent ve Marka Kurumu'nun yayımladığı Resmî Marka Bülteni'ndeki ulusal başvuruları tarar.</li>
+  <li>Adı aynı olan, okunuşu aynı olan (örneğin i/ı, k/c, w/v farkı), adınızı içinde barındıran ve yazılışı çok yakın olan başvuruları listeler.</li>
+  <li>Her sonuçta başvuru numarasını, başvuru sahibini, sınıfları ve itiraz süresinin son gününü gösterir.</li>
+</ul>
+<h2>Ne yapmaz?</h2>
+<ul>
+  <li>Hukuki görüş vermez. İki markanın karıştırılma ihtimali olup olmadığına ve itiraz edip etmemeye siz ya da marka vekiliniz karar verir.</li>
+  <li>Yalnızca şekilden oluşan (yazısız) markaları ve Madrid Protokolü bölümünü taramaz.</li>
+  <li>Sonuç çıkmaması, benzer bir marka olmadığının garantisi değildir.</li>
+</ul>
+<h2>Kapsanan bültenler</h2>
+<ul><li>504 sayılı bülten, yayım 12.11.2026: 6.697 başvuru</li></ul>
+
+<footer>Veri kaynağı: Türk Patent ve Marka Kurumu, Resmî Marka Bülteni (herkese açık). Bu site Kurum'la bağlantılı değildir. Bilgilendirme amaçlıdır, hukuki tavsiye değildir.</footer>
+</main>
+<script src="veri.js"></script>
+<script>
+const ZAYIF=new Set("ve ile the and of by co ltd sti as anonim limited sirketi sirket san tic ticaret sanayi grup group holding turkiye turkey turk tr istanbul ankara izmir anadolu home life style plus pro premium gold star world global international art design studio store shop market online food cafe kafe restaurant restoran coffee kahve bar mutfak kitchen tekstil insaat yapi gida otomotiv makina makine mobilya kozmetik cosmetics beauty guzellik moda fashion medikal medical saglik health teknoloji technology tech yazilim software dijital digital akademi academy emlak gayrimenkul turizm tourism lojistik logistics enerji energy tarim organik organic dogal natural collection koleksiyon company official original new yeni best smart easy my our one".split(" "));
+const TR={"ı":"i","ç":"c","ğ":"g","ö":"o","ş":"s","ü":"u","â":"a","î":"i","û":"u"};
+const sade=s=>(s||"").replace(/İ/g,"i").replace(/I/g,"ı").toLowerCase().replace(/[ıçğöşüâîû]/g,c=>TR[c]).normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g," ").trim();
+const SES=[["ph","f"],["sch","s"],["sh","s"],["ch","c"],["ck","k"],["qu","k"],["x","ks"],["w","v"],["q","k"],["y","i"],["z","s"],["j","c"],["th","t"]];
+const ses=s=>{let t=sade(s).replace(/ /g,"");for(const [a,b] of SES)t=t.split(a).join(b);return t.replace(/(.)\1+/g,"$1")};
+const govde=s=>sade(s).split(" ").filter(w=>w.length>=2&&!ZAYIF.has(w));
+// difflib.SequenceMatcher.ratio() karşılığı (Ratcliff/Obershelp)
+function esBlok(a,b){if(!a||!b)return 0;let en=0,ai=0,bi=0;const son=new Array(b.length+1).fill(0);for(let i=1;i<=a.length;i++){let onceki=0;for(let j=1;j<=b.length;j++){const t=son[j];if(a[i-1]===b[j-1]){son[j]=onceki+1;if(son[j]>en){en=son[j];ai=i-en;bi=j-en}}else son[j]=0;onceki=t}}if(!en)return 0;return en+esBlok(a.slice(0,ai),b.slice(0,bi))+esBlok(a.slice(ai+en),b.slice(bi+en))}
+const oran=(a,b)=>a&&b?2*esBlok(a,b)/(a.length+b.length):0;
+function benzerlik(izlenen,aday){const gi=govde(izlenen),ga=govde(aday);if(!gi.length||!ga.length)return[0,""];const bi=gi.join(""),ba=ga.join("");if(bi===ba)return[1,"aynı ad"];const si=ses(gi.join(" ")),sa=ses(ga.join(" "));if(si===sa)return[.97,"okunuşu aynı"];if(bi.length>=4&&ga.join(" ").includes(gi.join(" "))&&gi.every(w=>ga.includes(w)))return[.9,"adınız başvurunun içinde geçiyor"];let kelime=1;for(const w of gi){let m=0;for(const x of ga)m=Math.max(m,oran(w,x),oran(ses(w),ses(x)));kelime=Math.min(kelime,m)}const butun=Math.max(oran(bi,ba),oran(si,sa));let puan=Math.max(butun,kelime*(gi.length===ga.length?.92:.85));if(bi.length<=4&&puan<.99)puan*=.8;if(bi.length>=5&&ba.includes(bi)&&ba.length<=bi.length+4)return[Math.max(puan,.88),"adınız başvurunun gövdesinde geçiyor"];return[puan,puan>=.8?"yazılışı ya da okunuşu yakın":""]}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function sonGun(yayim){const [g,a,y]=yayim.split(".").map(Number);const d=new Date(y,a-1+2,g);return d.toLocaleDateString("tr-TR")}
+document.getElementById("f").addEventListener("submit",e=>{e.preventDefault();
+  const ad=document.getElementById("ad").value.trim();const sn=new Set((document.getElementById("sn").value.match(/\d+/g)||[]).map(Number));
+  const kutu=document.getElementById("sonuc");if(!govde(ad).length){kutu.innerHTML='<div class="ozet var">Bu ad yalnızca çok yaygın sözcüklerden oluşuyor; ayırt edici kısmını yazın.</div>';return}
+  const bulunan=[];for(const b of window.BULTENLER)for(const k of b.k){const [p,neden]=benzerlik(ad,k[0]);const ortak=sn.size?k[4].filter(c=>sn.has(c)):k[4];const esik=(ortak.length||!sn.size)?.82:.97;if(p>=esik)bulunan.push({p,neden,ortak,k,b})}
+  bulunan.sort((x,y)=>(sn.size?(y.ortak.length>0)-(x.ortak.length>0):0)||y.p-x.p);
+  const goster=bulunan.slice(0,60);
+  kutu.innerHTML=(bulunan.length?'<div class="ozet var">'+bulunan.length+' benzer başvuru bulundu'+(bulunan.length>60?' (ilk 60 gösteriliyor)':'')+'. Kendi başvurunuz da listede çıkabilir.</div>':'<div class="ozet yok">Son '+window.BULTENLER.length+' bültende bu ada benzer başvuru bulunamadı.</div>')
+   +goster.map(r=>'<div class="es"><b>'+esc(r.k[0])+'</b><span class="rozet">'+esc(r.neden)+'</span><div class="kim">'+esc(r.k[3])+' · başvuru '+esc(r.k[1])+' ('+esc(r.k[2])+') · sınıf '+r.k[4].join(", ")+(sn.size&&r.ortak.length?' <span class="rozet sinif">ortak sınıf '+r.ortak.join(", ")+'</span>':'')+'</div><div class="sure">'+r.b.sayi+' sayılı bülten · itirazın son günü '+sonGun(r.b.yayim)+'</div></div>').join("");
+  document.getElementById("cta").hidden=false;
+});
+</script>
+</body>
+</html>
